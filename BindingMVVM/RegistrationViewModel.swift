@@ -11,8 +11,16 @@ import Foundation
 
 class RegistrationViewModel {
 	
-	var email : String!
-	var password : String!
+	var registration = Box(Registration(email: "Test Email", password: "Test Password"))
 	
+	init() {
+		simulateChanges()
+	}
+	private func simulateChanges () {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+			self.registration.value.email = "Works!"
+			self.registration.value.password = "Really?!"
+		}
+	}
 	
 }

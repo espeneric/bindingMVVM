@@ -14,33 +14,20 @@ class RegistrationTableViewController: UITableViewController {
         super.viewDidLoad()
 		
 		self.registrationViewModel = RegistrationViewModel()
-		
+		registrationViewModel.registration.bind { [unowned self] (reg) in
+			self.emailTextField.text = reg.email
+			self.passwordTextField.text = reg.password
+		}
     }
-	
-	
+
 	private var registrationViewModel : RegistrationViewModel!
 
-	
-	@IBOutlet weak var emailTextField: BindigTextField! {
-		didSet {
-			emailTextField.bind { self.registrationViewModel.email = $0}
-		}
-	}
-	
-	
-	@IBOutlet weak var passwordTextField: BindigTextField! {
-		didSet {
-			passwordTextField.bind { self.registrationViewModel.password  = $0}
-		}
-	}
-	
-	
-	
-	
+	@IBOutlet weak var emailTextField: UITextField!
+	@IBOutlet weak var passwordTextField: UITextField!
 	
 	@IBAction func saveAction(_ sender: UIBarButtonItem) {
-		print(self.registrationViewModel) //set breakpoint here;
 		
+
 	}
 	
 	
